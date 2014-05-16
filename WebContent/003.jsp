@@ -1,6 +1,8 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,8 +53,8 @@
               <td width="10%"></td>
               <td width="90%">
                 <table>
-                  <tr><td colspan="2">commented by <strong>${reply.userId}</strong> at ${reply.createdDate}</font></td></tr>
-            <tr><td width="10%"></td><td width="90%">${reply.content} <img src="http://bookriotcom.c.presscdn.com/wp-content/uploads/2013/07/x.png" height="10"/></td></tr>
+                  <tr><td colspan="2">commented by <strong>${reply.nickname}</strong> at <fmt:parseDate value="${reply.createdDate }" pattern="MM/dd/yyyy" var="datefmt"/><fmt:formatDate value="${datefmt}" pattern="yyyy/MM/dd"/></td></tr>
+            	  <tr><td width="10%"></td><td width="90%">${reply.content} <img src="http://bookriotcom.c.presscdn.com/wp-content/uploads/2013/07/x.png" height="10"/></td></tr>
                 </table>
               </td>
               </tr>
@@ -69,7 +71,9 @@
     </tr>
     <tr>
       <td width="70%">
-        <form name="reply" action="">
+        <form name="reply" action="regreply.navi" method="post" onSubmit="return inputCheck(this)">
+        <input type="hidden" name="blogId" value="${requestScope.blog.blogId }">
+        <input type="hidden" name="postId" value="${requestScope.post.postId }">
         <table>
           <tr>
             <td>닉네임 : </td>
@@ -80,7 +84,7 @@
           </tr>
           <tr>
             <td colspan="5">
-              <textarea rows="2" cols="80"></textarea>
+              <textarea rows="2" cols="80" name="content"></textarea>
             </td>
           </tr>
         </table>
@@ -91,4 +95,20 @@
     </tr>
   </table>
 </body>
+<script type="text/javascript">
+function inputCheck(element) {
+	var nickname = document.getElementsByName("nickname");
+	var content = document.getElementsByName("content");
+	if(nickname[0].value == "") {
+		alert("닉네임을 입력하여 주세요.");
+		nickname[0].focus();
+		return false;
+	} else if(content[0].value == "") {
+		alert("내용을 입력하세요.");
+		content[0].focus();
+		return false;
+	}
+	return true;
+}
+</script>
 </html>

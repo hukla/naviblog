@@ -1,10 +1,8 @@
-DROP TABLE m_code;
 CREATE TABLE M_code (
    m_code_id VARCHAR(10) NOT NULL PRIMARY KEY,
    m_code_name VARCHAR(100) NOT NULL 
 );
 
-DROP TABLE code;
 CREATE TABLE  code (
    code_id VARCHAR(10) NOT NULL PRIMARY KEY,
    m_code_id VARCHAR(10) NOT NULL REFERENCES m_code(m_code_id),
@@ -66,7 +64,7 @@ CREATE TABLE tag(
 );
 
 CREATE TABLE reply(
-   reply_id INTEGER NOT NULL PRIMARY KEY,
+   reply_id INTEGER AUTO_INCREMENT PRIMARY KEY,
    user_id VARCHAR(32) NOT NULL,
    nickname VARCHAR(20),
    ref_id INTEGER,
@@ -75,7 +73,7 @@ CREATE TABLE reply(
    created_date VARCHAR(14),
    public_reply CHAR(1) NOT NULL DEFAULT 'Y',
    FOREIGN KEY(user_id, post_id) REFERENCES post(user_id, post_id),
-   FOREIGN KEY(ref_id) REFERENCES reply_id
+   FOREIGN KEY(ref_id) REFERENCES reply(reply_id)
 );
 
 DESC m_code;
@@ -87,4 +85,16 @@ DESC post;
 DESC tag;
 DESC reply;
 
-DROP TABLE post;
+
+INSERT INTO blog(blog_id, title, code_id, tag) VALUES ('test', 'JAVA 완성', 'code', 'JAVA');
+
+INSERT INTO post(post_id, user_id, blog_id, title, content, created_date)
+VALUES (1, 'test', 'test', '프로그래밍이란 무엇일까?', '프로그래밍이란 무엇일까? 쉬운것 같으면서도 굉장히 어려워', '08/20/2008');
+
+INSERT INTO category(blog_id, category_id, category_name)
+VALUES ('test', 1, 'IPv6'), ('test', 2, 'RFID'), ('test', 3, 'USN'), ('test', 4, '미들웨어'), ('test', 5, '미분류'), ('test', 6, '전체');
+
+INSERT INTO reply(user_id, nickname, post_id, content, created_date) VALUES
+('test', 'xman', 1, '객체지향 프로그래밍이란 현실을 그대로 옮기는 건 아닐까요?', '08/20/2008'),
+('test', 'sadman', 1, '프로그래밍은 열심히 하면 잘되는거야!', '08/21/2008'),
+('test', 'xman', 1, '맞아', '08/21/2008');

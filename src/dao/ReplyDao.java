@@ -41,4 +41,29 @@ public class ReplyDao {
 		
 		return list;
 	}
+
+	public boolean addReply(ReplyVO reply) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean res = false;
+		
+		try {
+			con = DBUtil.getConnection();
+			
+			System.out.println("reply.getNickname"+reply.getNickname());
+			
+			pstmt = con.prepareStatement("INSERT INTO reply(user_id, nickname, post_id, content, created_date) VALUES (?, ?, ?, ?, SYS_DATE)");
+			pstmt.setString(1, reply.getUserId());
+			pstmt.setString(2, reply.getNickname());
+			pstmt.setInt(3, reply.getPostId());
+			pstmt.setString(4, reply.getContent());
+			
+			res = pstmt.executeUpdate() > 0 ? true : false;
+			
+		} finally {
+			DBUtil.close(con, pstmt);
+		}
+		
+		return res;
+	}
 }

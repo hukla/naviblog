@@ -28,15 +28,15 @@
 </table>
 </form>
 <script>
-function checkInput() {
+function checkInput(element) {
 	var id = document.getElementById("id");
 	var pwd = document.getElementById("pwd");
 	
-	if(id == "") {
-		alert("아이디를 입력하여 주세요.');
+	if(id.value == "") {
+		alert("아이디를 입력하여 주세요.");
 		id.focus();
 		return false;
-	} else if(pwd == "") {
+	} else if(pwd.value == "") {
 		alert("비밀번호를 입력하세요.");
 		pwd.focus();
 		return false;
