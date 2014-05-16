@@ -61,12 +61,11 @@ public class BlogService {
 		ReplyDao rd = new ReplyDao();
 		List<ReplyVO> replyList = rd.getReplyList(postId);
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("blog", blog);
-		session.setAttribute("categoryList", categoryList);
-		session.setAttribute("post", post);
-		session.setAttribute("replyList", replyList);
-		
+		request.setAttribute("blog", blog);
+		request.setAttribute("categoryList", categoryList);
+		request.setAttribute("post", post);
+		request.setAttribute("replyList", replyList);
+		response.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("003.jsp").forward(request, response);
 	}
 }

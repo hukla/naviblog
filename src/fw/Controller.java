@@ -41,6 +41,8 @@ public class Controller extends HttpServlet {
 			} else if(uri.contains("index.navi")) {
 				bservice.executeIndex(request, response);
 				System.out.println("[process()] user="+request.getSession().getAttribute("user"));
+			} else if(uri.contains("detailpost.navi")){
+				bservice.executePostDetail(request, response);
 			} else {
 				throw new Exception("해당 요청을 처리할 수 없습니다.");
 			}

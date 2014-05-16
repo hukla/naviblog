@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>È­¸é003</title>
+  <title>í™”ë©´003</title>
 </head>
 <body>
   <table>
@@ -24,9 +24,9 @@
         </table>
       </td>
       <td width="30%">
-        <a href="#">¸¶ÀÌ ÆäÀÌÁö</a><br/>
-        <a href="#">·Î±×ÀÎ</a><br/>
-        <a href="#">ºí·Î±× °ü¸®</a><br/>
+        <a href="#">ë§ˆì´ í˜ì´ì§€</a><br/>
+        <a href="#">ë¡œê·¸ì¸</a><br/>
+        <a href="#">ë¸”ë¡œê·¸ ê´€ë¦¬</a><br/>
       </td>
     </tr>
     <tr>
@@ -34,8 +34,8 @@
         <table>
           <tr>
             <td>
-              <a href="#">¼öÁ¤</a>&nbsp; &nbsp;
-              <a href="#">»èÁ¦</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <a href="#">ìˆ˜ì •</a>&nbsp; &nbsp;
+              <a href="#">ì‚­ì œ</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               posted by ${requestScope.post.userId} in "${requestScope.blog.title}"
             </td>
           </tr>
@@ -45,22 +45,22 @@
     <tr>
       <td width="70%">
         <table>
-          <tr><td colspan="2">µ¡±Û ${requestScope.replycnt}</td></tr>
-          <tr> 
+          <tr><td colspan="2">ë§ê¸€ ${requestScope.replycnt}</td></tr>
             <c:forEach items="${requestScope.replyList}" var="reply">
+            <tr>
               <td width="10%"></td>
-              <td>
+              <td width="90%">
                 <table>
-                  <tr><td>commented by <strong>${reply.userId}</strong> at ${reply.createdDate}</font></td></tr>
+                  <tr><td colspan="2">commented by <strong>${reply.userId}</strong> at ${reply.createdDate}</font></td></tr>
             <tr><td width="10%"></td><td width="90%">${reply.content} <img src="http://bookriotcom.c.presscdn.com/wp-content/uploads/2013/07/x.png" height="10"/></td></tr>
                 </table>
               </td>
+              </tr>
             </c:forEach>
-          </tr>
         </table>
       <td width="30%">
         <table>
-          <tr><td align="center"><strong>Ä«Å×°í¸®</strong></td></tr>
+          <tr><td align="center"><strong>ì¹´í…Œê³ ë¦¬</strong></td></tr>
           <c:forEach items="${requestScope.categoryList}" var="category">
             <tr><td align="right">${category.categoryName}</td></tr>
           </c:forEach>
@@ -72,11 +72,11 @@
         <form name="reply" action="">
         <table>
           <tr>
-            <td>´Ğ³×ÀÓ : </td>
+            <td>ë‹‰ë„¤ì„ : </td>
             <td><input type="text" name="nickname"></td>
-            <td> &nbsp; &nbsp; &nbsp;µ¡±Û °ø°³ ¿©ºÎ</td>
+            <td> &nbsp; &nbsp; &nbsp;ë§ê¸€ ê³µê°œ ì—¬ë¶€</td>
             <td><input type="checkbox" name="public_reply"></td>
-            <td><input type="submit" value="µ¡±ÛÃß°¡"></td>
+            <td><input type="submit" value="ë§ê¸€ì¶”ê°€"></td>
           </tr>
           <tr>
             <td colspan="5">

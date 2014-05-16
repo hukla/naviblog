@@ -18,7 +18,7 @@
 	<c:if test="${sessionScope.user != null}">
 	<a href="#">로그아웃</a>&nbsp;
 	</c:if>
-	<a href="detailpost.navi?blogId=&postId=">포스트 보기</a>
+	<a href="detailpost.navi?blogId=test&postId=1">포스트 보기</a>
 	</td>
 </tr>
 </table>

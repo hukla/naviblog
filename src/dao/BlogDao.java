@@ -22,13 +22,14 @@ public class BlogDao {
 			
 			while(rs.next()) {
 				blog.setBlogId(rs.getString("blog_id"));
-				blog.setTitle(rs.getString("titile"));
+				blog.setTitle(rs.getString("title"));
 				blog.setCodeId(rs.getString("code_id"));
 				blog.setTag(rs.getString("tag"));
 				blog.setCntDisplayPost(rs.getInt("cnt_display_post"));
-				blog.setStatus(rs.getString("status"));
+				blog.setStatus(rs.getString("blog_status"));
 				blog.setImagePath(rs.getString("image_path"));
 				blog.setPublicBlog((rs.getString("public_blog").equals("Y")? true:false));
+				blog.setCreatedDate(rs.getString("create_date"));
 			}
 		} finally {
 			DBUtil.close(con, pstmt, rs);
