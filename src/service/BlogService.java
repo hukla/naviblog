@@ -1,10 +1,20 @@
 package service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import vo.BlogVO;
+import vo.CategoryVO;
+import vo.PostVO;
+import vo.ReplyVO;
 import vo.UserVO;
+import dao.BlogDao;
+import dao.CategoryDao;
+import dao.PostDao;
+import dao.ReplyDao;
 import dao.UserDao;
 
 public class BlogService {
@@ -35,5 +45,28 @@ public class BlogService {
 		request.getRequestDispatcher("002.jsp").forward(request, response);
 	}
 	
-	
+	public void executePostDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String blogId = request.getParameter("blogId");
+		int postId = Integer.parseInt(request.getParameter("postId"));
+		
+		BlogDao bd = new BlogDao();
+		BlogVO blog = bd.getBlog(blogId);
+		
+		CategoryDao cd = new CategoryDao();
+		List<CategoryVO> categoryList = cd.getCategoryList(blogId);
+		
+		PostDao pd = new PostDao();
+		PostVO post = pd.getPost(postId);
+		
+		ReplyDao rd = new ReplyDao();
+		List<ReplyVO> replyList = rd.getReplyList(postId);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("blog", blog);
+		session.setAttribute("categoryList", categoryList);
+		session.setAttribute("post", post);
+		session.setAttribute("replyList", replyList);
+		
+		request.getRequestDispatcher("003.jsp").forward(request, response);
+	}
 }

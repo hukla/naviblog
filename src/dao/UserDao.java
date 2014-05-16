@@ -33,7 +33,7 @@ public class UserDao {
 			}
 			
 		} finally {
-			DBUtil.Close(con, pstmt, rs);
+			DBUtil.close(con, pstmt, rs);
 		}
 		 
 		

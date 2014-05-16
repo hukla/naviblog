@@ -31,7 +31,7 @@ public class BlogDao {
 				blog.setPublicBlog((rs.getString("public_blog").equals("Y")? true:false));
 			}
 		} finally {
-			DBUtil.Close(con, pstmt, rs);
+			DBUtil.close(con, pstmt, rs);
 		}
 		
 		return blog;

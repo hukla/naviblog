@@ -28,7 +28,7 @@ public class DBUtil {
 		return ds.getConnection();
 	}
 	
-	public static void Close(Connection con, Statement stmt) {
+	public static void close(Connection con, Statement stmt) {
 		try {
 			if(stmt != null) {
 				stmt.close();
@@ -43,7 +43,7 @@ public class DBUtil {
 		}
 	}
 	
-	public static void Close(Connection con, Statement stmt, ResultSet rs) {
+	public static void close(Connection con, Statement stmt, ResultSet rs) {
 		try {
 			if(rs != null) {
 				rs.close();
@@ -63,7 +63,7 @@ public class DBUtil {
 		}
 	}
 	
-	public static void Close(Connection con, PreparedStatement pstmt) {
+	public static void close(Connection con, PreparedStatement pstmt) {
 		try {
 			if(pstmt != null) {
 				pstmt.close();
@@ -78,7 +78,7 @@ public class DBUtil {
 		}
 	}
 	
-	public static void Close(Connection con, PreparedStatement pstmt, ResultSet rs) {
+	public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
 		try {
 			if(rs != null) {
 				rs.close();
