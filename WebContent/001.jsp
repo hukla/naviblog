@@ -7,7 +7,7 @@
 <title>È­¸é001</title>
 </head>
 <body>
-<form action="login.navi" onSubmit="checkInput()">
+<form action="login.navi" onSubmit="return checkInput()">
 <table>
 <tr align="center">
 <td colspan="4" align="center"><h1>Butterfly Blog</h1></td>
@@ -28,7 +28,7 @@
 </table>
 </form>
 <script>
-function checkInput(element) {
+function checkInput() {
 	var id = document.getElementById("id");
 	var pwd = document.getElementById("pwd");
 	
